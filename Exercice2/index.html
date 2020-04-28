@@ -36,9 +36,13 @@
             } else if (idPassword.value === idPasswordConfirm.value) {
                 idPassword.classList.add('border-success');
                 idPasswordConfirm.classList.add('border-success');
+                idPassword.classList.remove('border-danger');
+                idPasswordConfirm.classList.remove('border-danger');
             } else {
                 idPassword.classList.add('border-danger');
                 idPasswordConfirm.classList.add('border-danger');
+                idPassword.classList.remove('border-success');
+                idPasswordConfirm.classList.remove('border-success');
             }
         }
     </script>

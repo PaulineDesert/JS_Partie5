@@ -4,32 +4,31 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
-    <title>Exercice 3</title>
+    <title>Exercice 6</title>
 </head>
 <body>
     <div class="content text-center">
-        <h1>Exercice 3</h1>
-        <p class="m-0">Créer un formulaire contenant un champ nom, un champ mail et un champ age.</p>
-        <p>Si les champs ne correspondent pas à une regex, afficher un message d'erreur en rouge sous le champs dès que l'on entre une valeur.</p>
+        <h1>Exercice 6</h1>
+        <p>Dans un formulaire, faire que les champs aient une bordure noire quand ils ont le focus. La supprimer quand ils perdent le focus.</p>
         <form action="">
             <div class="form-group row justify-content-center">
                 <label for="name" class="col-sm-2 col-form-label">Nom</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="name" onkeyup="nameRegexCheck()">
+                    <input type="text" class="form-control" id="name" onkeyup="nameRegexCheck()" onfocus="idName.style.border='1px solid black'" onfocusout="idName.style.border=''">
                     <p class="text-danger text-left m-0" id="missingName"></p>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="mail" class="col-sm-2 col-form-label">Mail</label>
                 <div class="col-sm-5">
-                    <input type="mail" class="form-control" id="mail" onkeyup="mailRegexCheck()">
+                    <input type="mail" class="form-control" id="mail" onkeyup="mailRegexCheck()" onfocus="idMail.style.border='1px solid black'" onfocusout="idMail.style.border=''">
                     <p class="text-danger text-left m-0" id="missingMail"></p>
                 </div>
             </div>
             <div class="form-group row justify-content-center">
                 <label for="age" class="col-sm-2 col-form-label">Age</label>
                 <div class="col-sm-5">
-                    <input type="text" class="form-control" id="age" onkeyup="ageRegexCheck()">
+                    <input type="text" class="form-control" id="age" onkeyup="ageRegexCheck()" onfocus="idAge.style.border='1px solid black'" onfocusout="idAge.style.border=''">
                     <p class="text-danger text-left m-0" id="missingAge"></p>
                 </div>
             </div>
@@ -38,13 +37,15 @@
     </div>
     
     <script>
+        let idName = document.getElementById('name');
+        let idMail = document.getElementById('mail');
+        let idAge = document.getElementById('age');
 
         function nameRegexCheck() {
-            let idName = document.getElementById('name');
             let idMissingName = document.getElementById('missingName');
             let nameFormat = /^[a-zA-Z]+$/;
 
-            if (nameFormat.test(idName.value)){
+            if (idName.value.match(nameFormat)){
                 idName.classList.remove('border-danger');
                 idMissingName.textContent = '';
             } else {
@@ -54,7 +55,6 @@
         }
 
         function mailRegexCheck() {
-            let idMail = document.getElementById('mail');
             let idMissingMail = document.getElementById('missingMail');
             let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
@@ -68,7 +68,6 @@
         }
 
         function ageRegexCheck() {
-            let idAge = document.getElementById('age');
             let idMissingAge = document.getElementById('missingAge');
             let ageFormat = /(?:\b|-)([1-9]{1,2}[0]?|100)\b/;
 

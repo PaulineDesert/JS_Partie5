@@ -5,21 +5,11 @@
   <meta charset="utf-8" />
   <title>Exercice 7</title>
 </head>
-<style>
-  body {
-  height: 2000px;
-}
-    #expandable {
-  position: fixed;
-  font-size: 20px;
-  line-height: 20px;
-}
-</style>
 
 <body>
-  <!-- <h1>Le coeur rébvélateur</h1>
-  <h2>Edgar Allan Poe</h2> -->
-  <p id="expandable">
+  <h1>Le coeur révélateur</h1>
+  <h2>Edgar Allan Poe</h2>
+  <p>
     Vrai ! — je suis très nerveux, épouvantablement nerveux, je l’ai toujours été ; mais pourquoi prétendez-vous que je
     suis fou ? La maladie a aiguisé mes sens, — elle ne les a pas détruits, — elle ne les a pas émoussés. Plus que tous
     les autres, j’avais le sens de l’ouïe très fin. J’ai entendu toutes choses du ciel et de la terre. J’ai entendu bien
@@ -183,18 +173,14 @@
 
 
   <script>
-    function textScroll () {
+    
+    let body = document.getElementsByTagName('body');
+    window.addEventListener('scroll', scrollText);
 
-      $(body).scroll(function () {
+    function scrollText () {
+      body[0].style.fontSize = '2rem';
+    }
 
-        let mass = Math.max(20, 70 - 0.1 * $(this).scrollTop()) + 'px';
-
-        $('#expandable').css({
-          'font-size': mass,
-          'line-height': mass
-        });
-      });
-    };
   </script>
 </body>
 

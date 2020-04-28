@@ -11,25 +11,22 @@
         <h1>Exercice 6</h1>
         <p>Dans un formulaire, faire que les champs aient une bordure noire quand ils ont le focus. La supprimer quand ils perdent le focus.</p>
         <form action="">
-            <div class="form-group row justify-content-center">
-                <label for="name" class="col-sm-2 col-form-label">Nom</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" id="name" onkeyup="nameRegexCheck()" onfocus="idName.style.border='1px solid black'" onfocusout="idName.style.border=''">
-                    <p class="text-danger text-left m-0" id="missingName"></p>
+            <div class="col-sm form-group row justify-content-center">
+                <label for="name" class="col-sm-1 col-form-label">Nom</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="name"">
                 </div>
             </div>
-            <div class="form-group row justify-content-center">
-                <label for="mail" class="col-sm-2 col-form-label">Mail</label>
-                <div class="col-sm-5">
-                    <input type="mail" class="form-control" id="mail" onkeyup="mailRegexCheck()" onfocus="idMail.style.border='1px solid black'" onfocusout="idMail.style.border=''">
-                    <p class="text-danger text-left m-0" id="missingMail"></p>
+            <div class="col-sm form-group row justify-content-center">
+                <label for="mail" class="col-sm-1 col-form-label">Mail</label>
+                <div class="col-sm-4">
+                    <input type="mail" class="form-control" id="mail">
                 </div>
             </div>
-            <div class="form-group row justify-content-center">
-                <label for="age" class="col-sm-2 col-form-label">Age</label>
-                <div class="col-sm-5">
-                    <input type="text" class="form-control" id="age" onkeyup="ageRegexCheck()" onfocus="idAge.style.border='1px solid black'" onfocusout="idAge.style.border=''">
-                    <p class="text-danger text-left m-0" id="missingAge"></p>
+            <div class="col-sm form-group row justify-content-center">
+                <label for="age" class="col-sm-1 col-form-label">Age</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="age">
                 </div>
             </div>
             <button type="button" class="btn btn-primary">Submit</button>
@@ -37,48 +34,33 @@
     </div>
     
     <script>
-        let idName = document.getElementById('name');
-        let idMail = document.getElementById('mail');
-        let idAge = document.getElementById('age');
 
-        function nameRegexCheck() {
-            let idMissingName = document.getElementById('missingName');
-            let nameFormat = /^[a-zA-Z]+$/;
+        let nameBorderColor = document.getElementById('name');
+        let mailBorderColor = document.getElementById('mail');
+        let ageBorderColor = document.getElementById('age');
 
-            if (idName.value.match(nameFormat)){
-                idName.classList.remove('border-danger');
-                idMissingName.textContent = '';
-            } else {
-                idName.classList.add('border-danger');
-                idMissingName.textContent = `Votre nom n'est pas valide`;
-            }
+        nameBorderColor.addEventListener('focus', changeNameBorderColor);
+        nameBorderColor.addEventListener('focusout', returnBorderColor);
+        mailBorderColor.addEventListener('focus', changeMailBorderColor);
+        mailBorderColor.addEventListener('focusout', returnBorderColor);
+        ageBorderColor.addEventListener('focus', changeAgeBorderColor);
+        ageBorderColor.addEventListener('focusout', returnBorderColor);
+
+        function changeNameBorderColor () {
+            nameBorderColor.style.border = '2px solid black';
         }
-
-        function mailRegexCheck() {
-            let idMissingMail = document.getElementById('missingMail');
-            let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-            if (idMail.value.match(mailFormat)){
-                idMail.classList.remove('border-danger');
-                idMissingMail.textContent = '';
-            } else {
-                idMail.classList.add('border-danger');
-                idMissingMail.textContent = `Votre adresse email n'est pas valide`;
-            }
+        function changeMailBorderColor () {
+            mailBorderColor.style.border = '2px solid black';
         }
-
-        function ageRegexCheck() {
-            let idMissingAge = document.getElementById('missingAge');
-            let ageFormat = /(?:\b|-)([1-9]{1,2}[0]?|100)\b/;
-
-            if (idAge.value.match(ageFormat)){
-                idAge.classList.remove('border-danger');
-                idMissingAge.textContent = '';
-            } else {
-                idAge.classList.add('border-danger');
-                idMissingAge.textContent = `Votre âge n'est pas valide`;
-            }
+        function changeAgeBorderColor () {
+            ageBorderColor.style.border = '2px solid black';
         }
+        function returnBorderColor () {
+            nameBorderColor.style.border = '';
+            mailBorderColor.style.border = '';
+            ageBorderColor.style.border = '';
+        }
+        
 
     </script>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
